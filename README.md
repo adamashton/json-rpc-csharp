@@ -28,8 +28,13 @@ Example
         }
     }
 
-Installing
-==========
-Clone the repository and open in Visual Studio / Visual Express (> .NET 4.0). 
+Installation 
+============
+Download and install Json.NET from http://json.codeplex.com/
+
+Clone the repository and open in Visual Studio / Visual Express (> .NET 4.0)
+
+Update the reference for Newtonsoft.Json to point to the correct Newtonsoft.Json.dll
+
 You should be able to build the project and then reference the JsonRPC.dll
-This version is currently using .NET 4.0 of Json.NET
+
