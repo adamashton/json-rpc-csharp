@@ -18,14 +18,10 @@ Example
         Response response = rpcClient.Rpc(request);
         
         if (response.Error != null)
-        {
             JToken result = response.Result
-        }
         else
-        {
             Console.WriteLine(string.Format("Error in response, code:{0} message:{1}",
                 result.Error.Code, result.Error.Message);
-        }
     }
 
 Installation 
