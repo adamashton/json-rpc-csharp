@@ -17,7 +17,7 @@ Example
         Request request = rpcClient.NewRequest("SportsAPING/v1.0/listMarketBook");
         Response response = rpcClient.Rpc(request);
         
-        if (response.Error != null)
+        if (response.Result != null)
         {
             JToken result = response.Result;
         }
