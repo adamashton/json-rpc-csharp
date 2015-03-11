@@ -12,11 +12,11 @@ namespace JsonRPC
     {
         #region Fields
 
-        private int globalId;
+        protected int globalId;
 
-        private readonly Uri url;
+        protected readonly Uri url;
 
-        private readonly WebClient webClient;
+        protected readonly WebClient webClient;
 
         #endregion
 
@@ -57,8 +57,13 @@ namespace JsonRPC
             return NewRequest(methodName, null);
         }
 
+        public GenericResponse Rpc(Request request)
+        {
+            return this.Rpc<GenericResponse>(request);
+        }
+
         /// <summary>Perform a remote procedure call</summary>
-        public Response Rpc(Request request)
+        public virtual TResponse Rpc<TResponse>(Request request) where TResponse : Response
         {
             string requestSerialized = JsonConvert.SerializeObject(request);
             byte[] requestBinary = Encoding.UTF8.GetBytes(requestSerialized);
@@ -67,8 +72,10 @@ namespace JsonRPC
             {
                 resultBinary = this.webClient.UploadData(this.url, "POST", requestBinary);
             }
+
             string resultSerialized = Encoding.UTF8.GetString(resultBinary);
-            Response response = JsonConvert.DeserializeObject<Response>(resultSerialized);
+            var response = JsonConvert.DeserializeObject<TResponse>(resultSerialized);
+
             return response;
         }
 

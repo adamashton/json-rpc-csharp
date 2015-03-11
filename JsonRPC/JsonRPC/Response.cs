@@ -1,10 +1,9 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace JsonRPC
 {
     /// <summary>A JSON Response.</summary>
-    public class Response
+    public abstract class Response
     {
         [JsonProperty("jsonrpc", Required = Required.Always)]
         public string Version;
@@ -12,10 +11,6 @@ namespace JsonRPC
         /// <summary>Unique Request Id.</summary>
         [JsonProperty("id", Required = Required.Always)]
         public int Id;
-
-        /// <summary>The result if no error occured.</summary>
-        [JsonProperty("result", Required = Required.Default)]
-        public JToken Result;
 
         /// <summary>The error. NULL if no error occured.</summary>
         [JsonProperty("error", Required = Required.Default)]
@@ -29,11 +24,6 @@ namespace JsonRPC
         public bool ShouldSerializeError()
         {
             return this.Error != null;
-        }
-
-        public bool ShouldSerializeResult()
-        {
-            return this.Result != null;
         }
     }
 }
