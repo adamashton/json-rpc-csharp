@@ -37,7 +37,7 @@ namespace JsonRPC
         {
             this.url = new Uri(baseUrl);
 
-            this.webClient = new WebClient();
+            this.webClient = new SessionWebClient();
             this.webClient.Headers.Add("Content-Type", "application/json");
             this.webClient.UploadDataCompleted += WebClientOnUploadDataCompleted;
         }
