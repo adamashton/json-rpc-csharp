@@ -33,13 +33,17 @@ namespace JsonRPC
         #endregion
 
         #region Constructor
-        public Client(string baseUrl)
+        public Client(string baseUrl, int timeout = 0)
         {
             this.url = new Uri(baseUrl);
 
             this.webClient = new SessionWebClient();
             this.webClient.Headers.Add("Content-Type", "application/json");
             this.webClient.UploadDataCompleted += WebClientOnUploadDataCompleted;
+            if (timeout > 0)
+            {
+                ((SessionWebClient)this.webClient).Timeout = timeout;
+            }
         }
         #endregion
 
