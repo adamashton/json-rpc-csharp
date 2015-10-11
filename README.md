@@ -24,7 +24,19 @@ Example
         else
             Console.WriteLine(string.Format("Error in response, code:{0} message:{1}",
                 response.Error.Code, response.Error.Message);
+                
+                
+        // Example with positional parameters
+        JArray parameters = JArray.Parse(@"['Small', 'Medium', 'Large' ]");
+        Request resuestWithPostionalParameters = rpcClient.NewRequest("SportsAPING/v1.0/listMarketBook", parameters);
+        
+        // Example with named parameters
+        JObject namedParameters = JObject.Parse(@"{ CPU: 'Intel', }");
+        Request resuestWithNamedParameters = rpcClient.NewRequest("SportsAPING/v1.0/listMarketBook", namedParameters);
     }
+    
+    
+    
 
 Installation 
 ============
