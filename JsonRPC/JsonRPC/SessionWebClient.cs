@@ -7,6 +7,8 @@ namespace JsonRPC
     {
         private readonly CookieContainer cookieContainer;
 
+        public int Timeout { get; set; }
+
         public SessionWebClient()
         {
             this.cookieContainer = new CookieContainer();
@@ -39,6 +41,10 @@ namespace JsonRPC
             if (httpRequest != null)
             {
                 httpRequest.CookieContainer = this.cookieContainer;
+                if (this.Timeout > 0)
+                {
+                    httpRequest.Timeout = this.Timeout;
+                }
             }
 
             return request;
