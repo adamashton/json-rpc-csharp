@@ -15,7 +15,7 @@ Example
         rpcClient.Headers.Add("X-Application", "MyApplicationKey");
         
         Request request = rpcClient.NewRequest("SportsAPING/v1.0/listMarketBook");
-        Response response = rpcClient.Rpc(request);
+        GenericResponse response = rpcClient.Rpc(request);
         
         if (response.Result != null)
         {
